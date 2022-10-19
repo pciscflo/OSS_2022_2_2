@@ -3,9 +3,10 @@ package com.upc.demoproductos.negocio;
 import com.upc.demoproductos.entidades.Producto;
 import com.upc.demoproductos.repositorio.IProductoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ProductoNegocio implements IProductoNegocio{
 
     @Autowired
@@ -35,21 +36,32 @@ public class ProductoNegocio implements IProductoNegocio{
 
     @Override
     public double calcularIGV(Producto producto) {
-        return 0;
+        double igv = 0;
+        if(producto!=null){
+            igv = 0.18*producto.getPrecio();
+        }
+        return igv;
     }
 
     @Override
     public double calcularDescuento(Producto producto) {
-        return 0;
+        double descuento =0;
+        if(producto!=null){
+            if(producto.getStock()>20){
+                descuento = 0.10*producto.getPrecio();
+            }
+        }
+        return descuento;
     }
 
     @Override
     public double calcularPrecioVenta(Producto producto) {
-        return 0;
+        return producto.getPrecio() + calcularIGV(producto) - calcularDescuento(producto);
     }
 
     @Override
-    public double calcularPrecioVenta(Long codigo) {
-        return 0;
+    public double calcularPrecioVenta(Long codigo) throws Exception {
+        Producto producto = buscar(codigo);
+        return calcularPrecioVenta(producto);
     }
 }

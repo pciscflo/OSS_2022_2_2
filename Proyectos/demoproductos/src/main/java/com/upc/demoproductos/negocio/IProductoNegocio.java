@@ -14,6 +14,6 @@ public interface IProductoNegocio {
     public double calcularDescuento(Producto producto);
     public double calcularPrecioVenta(Producto producto);
 
-    public double calcularPrecioVenta(Long codigo);
+    public double calcularPrecioVenta(Long codigo) throws Exception;
 
 }
