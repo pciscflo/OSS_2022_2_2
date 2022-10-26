@@ -12,7 +12,7 @@ public class ProductoNegocio implements IProductoNegocio{
     @Autowired
     IProductoRepositorio iProductoRepositorio;
 
-    @Override
+    @Override //a)
     public Producto registrar(Producto producto) {
         return iProductoRepositorio.save(producto);//insert into...
     }
@@ -28,7 +28,7 @@ public class ProductoNegocio implements IProductoNegocio{
         return iProductoRepositorio.findAll();
     }
 
-    @Override
+    @Override//c
     public Producto actualizar(Producto producto) throws Exception {
         buscar(producto.getCodigo());
         return iProductoRepositorio.save(producto);
@@ -59,9 +59,22 @@ public class ProductoNegocio implements IProductoNegocio{
         return producto.getPrecio() + calcularIGV(producto) - calcularDescuento(producto);
     }
 
-    @Override
+    @Override // b)
     public double calcularPrecioVenta(Long codigo) throws Exception {
         Producto producto = buscar(codigo);
         return calcularPrecioVenta(producto);
+    }
+
+    public List<Producto> listadoProductosPorDescripcion(String prefijo){
+        return iProductoRepositorio.obtenerReportePorDescripcion(prefijo);
+    }
+
+    public List<Producto> listadoTotal(){
+        List<Producto> listado;
+        listado = iProductoRepositorio.findAll();
+        for(Producto producto:listado){
+            producto.setTotal(calcularPrecioVenta(producto));
+        }
+        return listado;
     }
 }

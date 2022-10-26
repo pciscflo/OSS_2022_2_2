@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
 
-@SpringBootTest
+@SpringBootTest // Es test de prueba de logica del developer, no es unitaria
 class DemoproductosApplicationTests {
 
 	@Autowired
@@ -21,9 +21,9 @@ class DemoproductosApplicationTests {
 	@Test
 	void testRegistro(){
 		Producto producto = new Producto();
-		producto.setDescripcion("Fanta");
-		producto.setPrecio(3);
-		producto.setStock(30);
+		producto.setDescripcion("Coca Cola");
+		producto.setPrecio(4);
+		producto.setStock(40);
 		productoNegocio.registrar(producto);
 
 	}
@@ -55,7 +55,37 @@ class DemoproductosApplicationTests {
 			System.out.println(e.getMessage());
 		}
 	}
+    @Test
+	void testActualizar(){
+		Producto producto = new Producto();
+		producto.setCodigo(1L);
+		producto.setPrecio(2);
+		producto.setDescripcion("Sprite");
+		producto.setStock(100);
+		try {
+			productoNegocio.actualizar(producto);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 
+	}
+	@Test
+	void testListadoDescripcion(){
+		List<Producto> listado;
+		listado = productoNegocio.listadoProductosPorDescripcion("Spri");
+		for (Producto producto:listado){
+			System.out.println(producto.getCodigo() + "  " + producto.getDescripcion());
+		}
+	}
+	@Test
+	void testListadoTotal(){
+		List<Producto> listado;
+		listado = productoNegocio.listadoTotal();
+		for (Producto producto:listado){
+			System.out.println(producto.getCodigo() + "  " + producto.getDescripcion() + "  " +
+					producto.getTotal());
+		}
+	}
 
 
 

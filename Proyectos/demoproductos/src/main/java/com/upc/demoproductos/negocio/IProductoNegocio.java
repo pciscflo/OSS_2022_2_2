@@ -15,5 +15,8 @@ public interface IProductoNegocio {
     public double calcularPrecioVenta(Producto producto);
 
     public double calcularPrecioVenta(Long codigo) throws Exception;
+    public List<Producto> listadoProductosPorDescripcion(String prefijo);
+
+    public List<Producto> listadoTotal();
 
 }

@@ -1,8 +1,13 @@
 package com.upc.demoproductos.entidades;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Setter
+@Getter
 @Table(name = "TBL_PRODUCTO")
 public class Producto {
     @Id
@@ -11,6 +16,8 @@ public class Producto {
     private String descripcion;
     private double precio;
     private int stock;
+
+    private transient double total;
 
     public Producto() {
     }
@@ -22,35 +29,4 @@ public class Producto {
         this.stock = stock;
     }
 
-    public Long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
 }
