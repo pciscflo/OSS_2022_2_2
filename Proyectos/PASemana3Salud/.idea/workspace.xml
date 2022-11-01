@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac17f461-dd2f-433b-8092-e61984c8f700" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/upc/salud/negocio/CentroSaludNegocio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/upc/salud/negocio/CentroSaludNegocio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/upc/salud/negocio/ICentroSaludNegocio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/upc/salud/negocio/ICentroSaludNegocio.java" afterDir="false" />
-    </list>
+    <list default="true" id="ac17f461-dd2f-433b-8092-e61984c8f700" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,7 +34,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/Githubs/OSS_2022_2_2/Proyectos/demoproductos",
+    "last_opened_file_path": "D:/Githubs/OSS_2022_2_2/Proyectos/PASemana3Salud",
     "spring.configuration.checksum": "c546a01ecdc229b141a03e8a299a7234"
   }
 }]]></component>
