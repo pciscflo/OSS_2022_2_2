@@ -77,4 +77,9 @@ public class CentroSaludNegocio implements  ICentroSaludNegocio{
         double calificacion = calcularCalificacion(centroSalud);
         return calificacion >= 80 ? "APROBADO" : "RECHAZADO";
     }
+
+    public String obtenerResultadoFinal(Long codigo) throws Exception {
+        CentroSalud centroSalud = buscar(codigo);
+        return obtenerResultadoFinal(centroSalud);
+    }
 }

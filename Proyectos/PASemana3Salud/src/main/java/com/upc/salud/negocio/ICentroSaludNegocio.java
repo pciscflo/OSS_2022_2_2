@@ -14,4 +14,5 @@ public interface ICentroSaludNegocio {
     public CentroSalud actualizarCentroSalud(Long codigo, String nombre);
     public double calcularCalificacion(CentroSalud centroSalud);
     public String obtenerResultadoFinal(CentroSalud centroSalud);
+    public String obtenerResultadoFinal(Long codigo) throws Exception;
 }
