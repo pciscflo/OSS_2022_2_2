@@ -1,7 +1,6 @@
 package com.upc.curso.negocio;
 
 import com.upc.curso.entidades.Producto;
-import com.upc.curso.entidades.ProductoDTO;
 import com.upc.curso.repositorio.ProductoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +14,11 @@ public class ProductoNegocio {
     private ProductoRepositorio productoRepositorio;
 
     @Transactional
-    public Producto registrar(ProductoDTO producto){
-       Producto producto1 = new Producto();
-       producto1.setDescripcion(producto.getDescripcion());
-       producto1.setPrecio(producto.getPrecio());
-       producto1.setStock(producto.getStock());
-       return productoRepositorio.save(producto1);
+    public Producto registrar(Producto producto){
+       return productoRepositorio.save(producto);
     }
     public Producto buscar(Long codigo) throws Exception {
-        return productoRepositorio.findById(codigo).orElseThrow(() -> new Exception("No se encontró entidad"));
+        return productoRepositorio.findById(codigo).orElseThrow(() -> new Exception("No Existe"));
     }
     public List<Producto> listado(){
         return productoRepositorio.findAll();
@@ -45,11 +40,8 @@ public class ProductoNegocio {
     }
     public double calcularDescuento(Producto producto) {
         double descuento = 0;
-        if (producto!=null) {
-            if (producto.getStock() > 20) {
-                descuento = 0.1 * producto.getPrecio();
-            }
-        }
+        if (producto!=null && producto.getStock()>20)
+                descuento = 0.1*producto.getPrecio();
         return descuento;
     }
 
@@ -78,7 +70,7 @@ public class ProductoNegocio {
     }
 
     public Producto borrarProducto(Long codigo) throws Exception{
-        Producto producto = productoRepositorio.findById(codigo).orElseThrow(() -> new Exception("No se encontró entidad"));
+        Producto producto = productoRepositorio.findById(codigo).orElseThrow(() -> new Exception("Nada"));
         productoRepositorio.delete(producto);
         return producto;
     }

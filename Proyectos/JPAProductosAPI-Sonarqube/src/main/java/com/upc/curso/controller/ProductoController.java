@@ -1,7 +1,6 @@
 package com.upc.curso.controller;
 
 import com.upc.curso.entidades.Producto;
-import com.upc.curso.entidades.ProductoDTO;
 import com.upc.curso.negocio.ProductoNegocio;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +31,7 @@ public class ProductoController {
 
 
    @PostMapping("/producto")
-   public Producto crearProducto(@RequestBody ProductoDTO producto) {
+   public Producto crearProducto(@RequestBody Producto producto) {
        Producto p;
        try {
            logger.debug("Creando objeto");
