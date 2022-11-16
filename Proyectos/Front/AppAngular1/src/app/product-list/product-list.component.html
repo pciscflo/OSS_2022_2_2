@@ -1,0 +1,36 @@
+<div class="card bg-light w-75 mx-auto" *ngIf="products">
+  <div class="card-header">Productos</div>
+  <div class="card-body">
+      <div class="card border-dark mb-3">
+
+          <table class="table table-dark">
+              <thead>
+                  <tr>
+                      <th>id</th>
+                      <th>Descripcion</th>
+                      <th>Precio</th>
+                      <th>Stock</th>
+                      <th>Total</th>
+                      <th>Ver</th>
+                      <th>Editar</th>
+                      <th>Borrar</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let p of products">
+                      <th>{{p.codigo}}</th>
+                      <th>{{p.descripcion}}</th>
+                      <th>{{p.precio}}</th>
+                      <th>{{p.stock}}</th>
+                      <th>{{p.total}}</th>
+                      <th><button class="btn btn-outline-primary" ><i class="far fa-eye"></i> Ver</button></th>
+                      <th><button class="btn btn-outline-warning" ><i class="far fa-edit"></i> Editar</button></th>
+                      <th><button class="btn btn-outline-danger" ><i class="far fa-trash-alt"></i> Eliminar</button></th>
+                  </tr>
+              </tbody>
+
+          </table>
+
+      </div>
+  </div>
+</div>
