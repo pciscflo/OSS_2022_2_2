@@ -20,4 +20,13 @@ export class ProductService {
       map(response => response as Product[])
     );
   }
+
+  createProduct(product:Object) : Observable<Object>{
+    return this.http.post(this.urlBase+"/producto", product,
+    {headers:this.httpHeaders});
+  }
+  public detail(codigo: number): Observable<Product> {
+    return this.http.get<Product>(this.urlBase+ "/entidad/" + codigo);
+  }
+
 }

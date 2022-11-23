@@ -1,1 +1,37 @@
-<p>create-product works!</p>
+<div class="card bg-dark text-white w-75 mx-auto">
+  <div class="card-header">Registro</div>
+  <div class="card-body">
+              <form (ngSubmit)="save()" #clienteForm="ngForm">
+                    <div class="form-group">
+                          <label for="descripcion">Descripcion</label>
+                          <input type="text" class="form-control" id="descripcion"
+                                [(ngModel)]="product.descripcion"
+                                name="descripcion" required #descripcion="ngModel">
+                          <div class="alert alert-danger"
+                                *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                                <div *ngIf="descripcion.errors">
+                                      Descripcion es requerida.
+                                </div>
+                          </div>
+                    </div>
+                    <div class="form-group">
+                          <label for="price">Precio</label>
+                          <input type="text" class="form-control" id="price" [(ngModel)]="product.precio"
+                                name="precio">
+                    </div>
+
+                    <div class="form-group">
+                          <label for="stock">Stock</label>
+                          <input type="text" class="form-control" id="stock" [(ngModel)]="product.stock"
+                                name="stock">
+                    </div>
+
+                    <div class="form-group">
+                          <button type="submit" class="btn btn-success"
+                                [disabled]="!clienteForm.form.valid">Registrar</button>
+                    </div>
+
+              </form>
+
+  </div>
+</div>
