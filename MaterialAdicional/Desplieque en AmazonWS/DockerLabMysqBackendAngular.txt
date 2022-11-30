@@ -1,0 +1,91 @@
+Istalación de Docker en EC2
+sudo -i
+sudo yum update
+sudo yum search docker
+sudo yum info docker
+sudo yum install docker
+**opc:Habilite el servicio docker en el momento del arranque de la AMI:
+sudo systemctl enable docker.service
+** opc: Inicie el servicio Docker:
+sudo systemctl start docker.service
+
+Si se reinició servidor:
+sudo service docker start
+--------------------------------------
+sudo -i   Siempre al inicio con Putty luego de ingresar con EC2
+
+docker network create springcloud
+
+MYSQL EN EC2
+Bajando imagen Mysql de Docker Hub
+docker pull mysql:8.0.22
+Corriendo el Container de Mysql
+docker run -p 3306:3306 --name mis_datos --network springcloud -e MYSQL_ROOT_PASSWORD=root  -e MYSQL_DATABASE=tienda -d mysql:8.0.22
+entrar a mysql console
+docker exec -it mis_datos mysql -uroot -p
+---------------------------------------------------------------------------------------------------
+BACKEND En local(Es necesario tener el docker instalado en Windows del desarrollador)
+Creando la imagen app (con ./Dockerfile y jar en el proyecto Intellij)
+docker build -t javacf/backend-aws:v1 .
+
+Enviando a Docker Hub la imagen creada
+docker image push javacf/backend-aws:v1
+---------------------------------------------------------------------------------------------------
+En AWS EC2
+Bajando app de Docker Hub
+docker pull javacf/backend-aws:v1
+
+Creando container backend
+docker run -d -it -p 8080:8080 --name backend-container --network springcloud javacf/backend-aws:v1
+---------------------------------------------------------------------------------------------------
+Angular - local(Windows)
+Creando imagen
+docker build -t javacf/appangular1 .
+docker images
+//opcional
+docker run -d -it -p 80:80 javacf/appangular1
+docker ps
+//enviado a Docker hub
+docker push javacf/appangular1
+---------------------------------------------------------------------------------------------------
+Angular -EC2
+docker pull javacf/appangular1
+Crear o levantar Container
+docker run -d -it -p 80:80 --network springcloud javacf/appangular1
+----------------------------------------------------------------------------------------------------
+Comandos
+docker images -a
+docker ps -a  (para ver container ejecutándose)
+Remover Imagen
+docker rmi -f id....
+Remover todas las imagenes
+docker rmi $(docker images -a -q)
+Parar todos los containers:
+docker stop $(docker ps -a -q)
+Borrar Todos los Containers
+docker rm $(docker ps -a -q)
+docker rm $(docker ps -a -f status=exited -q)  todos los containers
+docker start container_name
+docker stop container-name
+Docker logs 812c93b2a666  o nombre del container
+Iniciar docker
+sudo service docker start
+
+-------------------------
+Hacer Mysql Persistente
+
+docker stop mysql:8.0.22
+docker rm -f mis_datos
+eliminamos todos los temporales de volumenes
+docker volume prune
+Creamos un volume
+ docker volume create mysql-db-datos
+docker volume ls
+Levantamos nuevamente el Mysq y agregamos el volumen con la opcion --mount
+docker run -d -p 3306:3306 --name mis_datos --network springcloud -e MYSQL_ROOT_PASSWORD=root --mount src=mysql-db-datos,dst=/var/lib/mysql mysql:8.0.22
+entrar a mysql console
+docker exec -it mis_datos mysql -uroot -p
+crear la base de datos
+Listo!
+
+

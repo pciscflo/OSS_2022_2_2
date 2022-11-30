@@ -7,7 +7,7 @@ import { Product } from '../model/product';
   providedIn: 'root'
 })
 export class ProductService {
-  URL_SERVICES = "http://localhost:8080";
+  URL_SERVICES = "http://52.90.41.167:8080";
   private urlBase = this.URL_SERVICES + "/api";
   private httpHeaders = new HttpHeaders({'Content-type':'application/json'});
 
